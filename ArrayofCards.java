@@ -1,10 +1,15 @@
 import java.util.ArrayList;
 import java.util.Random;
 
-public class ArrayofCards 
+public class ArrayofCards extends casino
 {
     private ArrayList<Integer> cards = new ArrayList<Integer>();
     
+    
+    public ArrayofCards(String name)
+    {
+        super(name);
+    }
     public void createdDeck() //makes a deck of cards
     {
         for(int i = 1; i <= 13; i++)

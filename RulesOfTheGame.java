@@ -8,7 +8,12 @@ public class RulesOfTheGame extends ArrayofCards
     ArrayList<Integer> pile1 = new ArrayList<Integer>();
     ArrayList<Integer> pile2 = new ArrayList<Integer>();
     
-    public void tieCase() //the case for when the cards are tied
+    public RulesOfTheGame(String name)
+    {
+        super(name);
+    }
+    
+    public void tieCase(casino account,int betAmount) //the case for when the cards are tied
     {
         System.out.print("Press any number to continue: ");
         
@@ -17,15 +22,17 @@ public class RulesOfTheGame extends ArrayofCards
         boolean indicator = false;
         //int i = 1; -- might need to change this part later
 
-        
+         int cardsinDecision = 2;
+
         while(indicator == false)
         {
             pile1.remove(0);
             pile2.remove(0);
-            
+
             if(pile1.get(0) == pile2.get(0))
             {
                 System.out.println("\n" + "It is a tie: " + pile1.get(0) + " == " + pile2.get(0) + "\n");
+                cardsinDecision++;
             }
             else
             {
@@ -36,11 +43,15 @@ public class RulesOfTheGame extends ArrayofCards
         {
             System.out.println("");
             WinCase();
+            account.wonChips(betAmount*cardsinDecision);
+
         }
         else
         {
             System.out.println("");
             LostCase();
+            account.lossChips(betAmount*cardsinDecision);
+
         }
     }
     
