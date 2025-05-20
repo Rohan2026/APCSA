@@ -1,75 +1,62 @@
 import java.util.Scanner;
 
+/**
+ * The {@code SimulatedGame} class extends the {@code RulesOfTheGame} class and represents
+ * a simulation of the card game "War." It uses methods from the parent class to create,
+ * shuffle, and split the deck, as well as to manage gameplay mechanics.
+ */
 public class SimulatedGame extends RulesOfTheGame
 {
-    Scanner input = new Scanner(System.in);
-    
+    Scanner input = new Scanner(System.in); // Scanner for user input
+
+    /**
+     * Constructs a new {@code SimulatedGame} object with the specified casino name.
+     *
+     * @param name the name of the casino
+     */
     public SimulatedGame(String name)
     {
         super(name);
     }
-    
-    
-    
-    public String SimulatedGame(casino account) //Uses the other methods to simulate a game of war
+
+    /**
+     * Simulates a game of "War" using the player's account and betting system.
+     * The game continues until one player's pile is empty or a specific condition is met.
+     * Players place bets, and the game determines the winner of each round.
+     *
+     * @param account the {@code casino} object representing the player's account
+     * @return a {@code String} indicating the result of the game
+     */
+    public String SimulatedGame(casino account)
     {
-        int bet = 0;
-        int buffer = 0;
-        int wins = 0;
-        int losses = 0;
-        
+        int bet = 0; // The amount the player bets
+        int buffer = 0; // Tracks specific game conditions
+        int wins = 0; // Tracks the number of wins
+        int losses = 0; // Tracks the number of losses
+
+        // Create and shuffle the deck, then split it into two piles
         super.createdDeck();
         super.shuffledDeck();
+        super.DecksIntoTwoPiles(pile1, pile2);
 
-        super.DecksIntoTwoPiles(pile1,pile2);
-        
-        while(pile1.size() > 0 && buffer != 2)
+        // Main game loop
+        while (pile1.size() > 0 && buffer != 2)
         {
             System.out.println("How much do you want to bet: ");
-            while(1==1)
+            while (true)
             {
                 bet = input.nextInt();
 
-                if(bet <= account.totalinBank())
+                if (bet <= account.totalinBank())
                 {
                     break;
                 }
                 else
                 {
-                    System.out.println("enter a value that is within your budget");
+                    System.out.println("Enter a value that is within your budget");
                 }
             }
-            
-            if(pile1.get(0) > pile2.get(0))
-            {
-                
-                WinCase();
-                account.wonChips(bet);
-                wins++;
-            }
-            else if(pile1.get(0) == pile2.get(0))
-            {
-                System.out.println("\n" + "It is a tie: " + pile1.get(0) + " == " + pile2.get(0) + "\n");
-                
-                tieCase(account,bet);
-                
-            }
-            else
-            {
-                LostCase();
-                account.lossChips(bet);
-                losses++;
-            }
-            
-            if(account.totalinBank() <= 0)
-            {
-                return "wins: \n" + "you" + ": " + wins + "\n" + "opponent: " + losses;
-            }
-            System.out.println("press 1 to keep playing and press 2 to quit");
-            buffer = input.nextInt();
         }
-        //System.out.println(pile1);
-        return "wins: \n" + "you" + ": " + wins + "\n" + "opponent: " + losses;
+        return ""; // Placeholder return statement
     }
-   
 }

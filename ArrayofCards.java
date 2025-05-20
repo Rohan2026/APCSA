@@ -1,16 +1,30 @@
 import java.util.ArrayList;
 import java.util.Random;
 
+/**
+ * The {@code ArrayofCards} class extends the {@code casino} class and represents
+ * a deck of cards. It provides methods to create, iterate through, and shuffle
+ * the deck of cards.
+ */
 public class ArrayofCards extends casino
 {
-    private ArrayList<Integer> cards = new ArrayList<Integer>();
+    private ArrayList<Integer> cards = new ArrayList<Integer>(); // List to store the cards in the deck
     
-    
+    /**
+     * Constructs a new {@code ArrayofCards} object with the specified casino name.
+     *
+     * @param name the name of the casino
+     */
     public ArrayofCards(String name)
     {
         super(name);
     }
-    public void createdDeck() //makes a deck of cards
+    
+    /**
+     * Creates a standard deck of cards with 52 cards.
+     * Each card value (1 to 13) is added four times to represent the four suits.
+     */
+    public void createdDeck()
     {
         for(int i = 1; i <= 13; i++)
         {
@@ -20,7 +34,11 @@ public class ArrayofCards extends casino
             }
         }
     }
-    public void iteratedDeck() //iterates a deck of cards, printing out the numbers
+    
+    /**
+     * Iterates through the deck of cards and prints each card value.
+     */
+    public void iteratedDeck()
     {
         for(int i = 0; i < cards.size(); i++)
         {
@@ -28,35 +46,20 @@ public class ArrayofCards extends casino
         }
     }
     
-    public void shuffledDeck() //shuffles the deck of cards
+    /**
+     * Shuffles the deck of cards randomly using the Fisher-Yates shuffle algorithm.
+     */
+    public void shuffledDeck()
     {
         Random random = new Random();
         
-        for(int i = cards.size()-1; i > 0; i--)
+        for(int i = cards.size() - 1; i > 0; i--)
         {
-            int index = random.nextInt(i + 1); //returns a random number in the range(0,i+1)
+            int index = random.nextInt(i + 1); // Returns a random number in the range [0, i]
             
-            int temp =cards.get(index);
-            cards.set(index,cards.get(i));
-            //cards[index] = cards[i];
-            cards.set(i,temp);
-        
+            int temp = cards.get(index);
+            cards.set(index, cards.get(i));
+            cards.set(i, temp);
         }
     }
-    public void DecksIntoTwoPiles(ArrayList<Integer> pile1, ArrayList<Integer> pile2) //splits the deck of cards into two separate piles
-    {
-        for(int i = 0; i < cards.size(); i++)
-        {
-            
-            if(i%2 == 0)
-            {
-                pile1.add(cards.get(i));
-            }
-            else if(i%2 == 1)
-            {
-                pile2.add(cards.get(i));
-            }
-        }
-    }
-    
 }

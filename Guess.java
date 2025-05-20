@@ -1,12 +1,31 @@
 import java.util.Scanner;
 import java.util.Random;
 
+/**
+ * The {@code Guess} class extends the {@code casino} class and represents a guessing game.
+ * Players can bet an amount and choose a multiplier. If they guess the correct number,
+ * they win the multiplied amount; otherwise, they lose their bet.
+ */
 public class Guess extends casino
 {
+    /**
+     * Constructs a new {@code Guess} object with the specified casino name.
+     *
+     * @param name the name of the casino
+     */
     public Guess(String name)
     {
         super(name);
     }
+
+    /**
+     * Simulates a guessing game where the player bets an amount and chooses a multiplier.
+     * The player must guess a randomly generated number to win the multiplied amount.
+     * If the guess is incorrect, the player loses the bet.
+     *
+     * @param account the {@code casino} object representing the player's account
+     * @return a {@code String} indicating the result of the game
+     */
     public String otherSimulatedGame(casino account)
     {
         int bet = 0;
@@ -39,7 +58,7 @@ public class Guess extends casino
             System.out.println("I am thinking of a number either 0 or 1. What is it?");
             int choice = input.nextInt();
             int randomNumber = random.nextInt(2);
-            int amount = bet*2;
+            int amount = bet * 2;
 
             if(choice == randomNumber)
             {
